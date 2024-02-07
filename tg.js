@@ -1,15 +1,24 @@
 
 async function sendTg(text) {
     let tg = {
-        token: "B6869529917:AAHPhFnVk5i2gB-XPiNDoqTb8Mh-S9MiRrw", // Your bot's token that got from @BotFather
-        chat_id: "testtgs1" // The user's(that you want to send a message) telegram chat id
+        token: process.env.TG_TOKEN, 
+        chat_id: process.env.TG_CHAT_ID
     }
 
     const url = `https://api.telegram.org/bot${tg.token}/sendMessage`; // The URL to request
 
+
     const obj = {
         chat_id: tg.chat_id, // Telegram chat id
-        text: text // The text to send
+        text: `
+        Name: ${text.name}
+        Email: ${text.email}
+        Services: ${text.services}
+        website Types: ${text.websiteTypes}
+        Specific Features: ${text.specificFeatures}
+        contactMethod: ${text.contactMethod}
+        Telegram: ${text.tg}
+        ` // The text to send
     };
 
     try {
